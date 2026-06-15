@@ -14,6 +14,8 @@ import com.copa.jornalcopa.entities.Jornal;
 import com.copa.jornalcopa.mappers.JornalMapper;
 import com.copa.jornalcopa.services.JornalService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,7 +51,7 @@ public class JornalController {
     }
 
     @PostMapping
-    public ResponseEntity<JornalResponse> save(@RequestBody JornalRequest jornalRequest) {
+    public ResponseEntity<JornalResponse> save(@Valid @RequestBody JornalRequest jornalRequest) {
         Jornal jornal = JornalMapper.toEntity(jornalRequest);
 
         Jornal j = service.save(jornal);
@@ -65,7 +67,7 @@ public class JornalController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Void> update(@RequestBody JornalRequest jornalRequest, @PathVariable Long id) {
+    public ResponseEntity<Void> update(@Valid @RequestBody JornalRequest jornalRequest, @PathVariable Long id) {
         Jornal jornalDadosNovos = JornalMapper.toEntity(jornalRequest);
 
         service.update(jornalDadosNovos, id);

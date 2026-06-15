@@ -3,7 +3,9 @@ package com.copa.jornalcopa.services;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import com.copa.jornalcopa.dtos.JornalResponse;
 import com.copa.jornalcopa.entities.Jornal;
+import com.copa.jornalcopa.mappers.JornalMapper;
 import com.copa.jornalcopa.repositories.JornalRepository;
 import jakarta.persistence.EntityNotFoundException; 
 
@@ -16,8 +18,11 @@ public class JornalService {
         this.repository = repository;
     }
 
-    public List<Jornal> findAll() {
-        return repository.findAll();
+    public List<JornalResponse> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(JornalMapper::toDTO)
+                .toList();
     }
 
     public Jornal findById(long id) {

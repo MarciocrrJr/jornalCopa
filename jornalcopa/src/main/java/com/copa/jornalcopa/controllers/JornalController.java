@@ -50,11 +50,10 @@ public class JornalController {
 
     @PostMapping
     public ResponseEntity<JornalResponse> save(@RequestBody JornalRequest jornalRequest) {
-        // Usa o mapper para transformar o DTO em Entidade com uma linha só!
         Jornal jornal = JornalMapper.toEntity(jornalRequest);
 
-        Jornal jornalSalvo = service.save(jornal);
-        JornalResponse response = JornalMapper.toDTO(jornalSalvo);
+        Jornal j = service.save(jornal);
+        JornalResponse response = JornalMapper.toDTO(j);
 
         URI location = ServletUriComponentsBuilder
                         .fromCurrentRequest()
@@ -67,7 +66,6 @@ public class JornalController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Void> update(@RequestBody JornalRequest jornalRequest, @PathVariable Long id) {
-        // Transforma o DTO em Entidade usando o mapper
         Jornal jornalDadosNovos = JornalMapper.toEntity(jornalRequest);
 
         service.update(jornalDadosNovos, id);

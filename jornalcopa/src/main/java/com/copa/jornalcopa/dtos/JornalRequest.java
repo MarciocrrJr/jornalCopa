@@ -1,5 +1,28 @@
 package com.copa.jornalcopa.dtos;
 
-public record JornalRequest (String titulo, String conteudo, String autor, String data, String subtitulo) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
+public record JornalRequest(
+    
+    @NotBlank(message = "O título é obrigatório")
+    @Size(max = 255, message = "O título deve ter no máximo 255 caracteres")
+    String titulo,
+
+    @NotBlank(message = "O conteúdo é obrigatório")
+    @Size(max = 1000, message = "O conteúdo deve ter no máximo 1000 caracteres")
+    String conteudo,
+
+    @NotBlank(message = "O autor é obrigatório")
+    @Size(max = 255, message = "O autor deve ter no máximo 255 caracteres")
+    String autor,
+
+    @NotBlank(message = "A data é obrigatória")
+    String data,
+
+    @Size(max = 255, message = "O subtítulo deve ter no máximo 255 caracteres")
+    String subtitulo
+
+) {
+    
 }

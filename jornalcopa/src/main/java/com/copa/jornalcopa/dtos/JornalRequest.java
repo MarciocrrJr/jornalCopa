@@ -1,7 +1,9 @@
 package com.copa.jornalcopa.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
 
 public record JornalRequest(
     
@@ -17,12 +19,10 @@ public record JornalRequest(
     @Size(max = 255, message = "O autor deve ter no máximo 255 caracteres")
     String autor,
 
-    @NotBlank(message = "A data é obrigatória")
-    String data,
+    @NotNull(message = "A data é obrigatória")
+    LocalDate data,
 
     @Size(max = 255, message = "O subtítulo deve ter no máximo 255 caracteres")
     String subtitulo
-
 ) {
-    
 }

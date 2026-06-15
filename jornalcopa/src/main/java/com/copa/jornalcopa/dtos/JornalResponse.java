@@ -1,5 +1,13 @@
 package com.copa.jornalcopa.dtos;
 
-public record JornalResponse (long id, String titulo, String subtitulo, String texto, String autor, String data) {
+import java.time.LocalDate;
 
+public record JornalResponse (
+    long id, 
+    String titulo, 
+    String subtitulo, 
+    String conteudo,
+    String autor, 
+    LocalDate data
+) {
 }

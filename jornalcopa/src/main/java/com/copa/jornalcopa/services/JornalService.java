@@ -48,7 +48,7 @@ public class JornalService {
 
         j.setTitulo(jornal.getTitulo());
         j.setSubtitulo(jornal.getSubtitulo());
-        j.setTexto(jornal.getTexto());
+        j.setConteudo(jornal.getConteudo());
         j.setAutor(jornal.getAutor());
         j.setData(jornal.getData());
 

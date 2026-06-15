@@ -1,5 +1,7 @@
 package com.copa.jornalcopa.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +17,9 @@ public class Jornal implements java.io.Serializable {
     private long id;
     private String titulo;
     private String subtitulo;
-    private String texto;
+    private String conteudo;
     private String autor;
-    private String data;
+    private LocalDate data;
 
     public long getId() {
         return id;
@@ -37,11 +39,11 @@ public class Jornal implements java.io.Serializable {
     public void setSubtitulo(String subtitulo) {
         this.subtitulo = subtitulo;
     }
-    public String getTexto() {
-        return texto;
+    public String getConteudo() {
+        return conteudo;
     }
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
     }
     public String getAutor() {
         return autor;
@@ -49,10 +51,10 @@ public class Jornal implements java.io.Serializable {
     public void setAutor(String autor) {
         this.autor = autor;
     }
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
     @Override

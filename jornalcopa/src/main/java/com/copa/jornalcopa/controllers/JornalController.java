@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.http.HttpStatus;
 
 import com.copa.jornalcopa.dtos.JornalRequest;
 import com.copa.jornalcopa.dtos.JornalResponse;
@@ -47,10 +49,19 @@ public class JornalController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
-        service.deleteById(id);
-        return ResponseEntity.noContent().build();
+public ResponseEntity<Void> deleteById(
+    @PathVariable Long id, 
+    @RequestHeader("X-Delete-Password") String password
+) {
+    final String senha = "glauco";
+
+    if (!senha.equals(password)) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+
+    service.deleteById(id);
+    return ResponseEntity.noContent().build();
+}
 
     @PostMapping
     public ResponseEntity<JornalResponse> save(@Valid @RequestBody JornalRequest jornalRequest) {
